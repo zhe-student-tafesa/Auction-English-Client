@@ -1,0 +1,63 @@
+<div class="thumbnail">
+  <img src="http://placehold.it/820x230">
+  <h4 class="pull-right">${{product?.price}}</h4>
+  <h4>{{product?.title}}</h4>
+  <p>{{product?.desc}}</p>
+  <!--  BBBBBBBB展示评论          （AAAAA 拿到了评论之后-->
+  <div>
+    <!--    显示数组长度（总评价数）-->
+    <p class="pull-right">Total Comments： {{comments?.length}}</p>
+
+    <!--    显示平均评级-->
+    <p>
+      <app-stars [rating]="product?.rating!"></app-stars>
+    </p>
+  </div>
+</div>
+    <!--样式绑定[class.active]="isWatched"-->
+<div class="thumbnail">
+  <button class="btn btn-default btn-lg"
+    [class.active]="isWatched"
+    (click)="watchProduct()">
+    {{isWatched? 'Unsubscribe':'Subscribe'}}
+  </button>
+  <label>Latest bid： ${{currentBid| number:'.2-2'}}</label>
+</div>
+
+<!--具体展示 评论的地方-->
+<div class="well">
+  <div>
+    <!--    222点击按钮 isCommentHidden 取反        为true时，div隐藏-->
+    <button class="btn btn-success" (click)="isCommentHidden=!isCommentHidden">add comment</button>
+  </div>
+    <!--  33把评论div 的hidden 属性绑定为 isCommentHidden  ！！！！！！！！！！！！用数据控制页面！！！！！！  -->
+  <div [hidden]="isCommentHidden">
+    <div>
+      <!--      绑定readonly属性  为false，则只有它可以点     newRating必须为public，否则报错       -->
+        <app-stars [(rating)]="newRating" [readonly]="false"> </app-stars>
+    </div>
+    <div>
+      <!--      双向绑定  -->
+      <textarea [(ngModel)]="newComment"></textarea>
+    </div>
+
+    <div>
+      <!--      双向绑定 (click)="addComment()-->
+      <button class="btn" (click)="addComment()">Submit</button>
+    </div>
+  </div>
+  <hr>
+  <div class="row" *ngFor="let comment of comments">
+    <hr>
+
+    <div class="col-md-12">
+      <!--      单个人的评级  然后使用for遍历-->
+      <app-stars [rating]="comment.rating"></app-stars>
+      <span>{{comment.user}}</span>
+      <span class="pull-right">{{comment.timestamp}}</span>
+      <p></p>
+      <p>{{comment.content}}</p>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+
+
+<!--angular语法：for循环products数组，每次把循环的元素放在product里面    -->
+    <!--angular语法,*ngFor循环生成6块下边的代码    -->
+<!--把 filter管道应用到 模板上，过滤产品-->
+                                      <!--通过async 订阅  Observable<Product[]流  -->
+<div *ngFor="let product of products | async " class="col-md-4 col-sm-4 col-lg-4 ">
+  <div class="thumbnail">
+    <img [src]="imgUrl">
+    <!--    属性绑定-->
+    <!--    放标题，描述-->
+    <div class="caption">
+      <h4 class="pull-right">$ {{product.price}}</h4>
+      <!--      增加路由链接,  点击时访问 http://localhost:4200/product/第三个商品名称-->
+      <h4><a [routerLink]="['/product',product.id]" >{{product.title}}</a></h4>
+      <p>{{product.desc}}</p>
+    </div>
+
+    <!--    放星级评价-->
+    <div><!--    放星级评价 开始-->
+      <!-- appstar的 rating属性由 product.rating传递-->
+      <app-stars [rating]="product.rating"></app-stars>
+    </div><!--    放星级评价 结束-->
+
+
+  </div>
+</div>

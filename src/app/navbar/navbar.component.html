@@ -1,0 +1,26 @@
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <!--    放名字的div-->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <!--  为了让按钮容易识别，加3个横线-->
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <!--      张哲增加 返回 主页-->
+      <a class="navbar-brand" href="#" [routerLink]="['/']" >Online Auction</a>
+    </div>
+    <!--    navbar-ex1-collapse是随便取的名字，这样就会把button与此div联系起来-->
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="#">About us</a></li>
+        <li><a href="#">Contact us</a></li>
+        <li><a href="#">Sitemap</a></li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+

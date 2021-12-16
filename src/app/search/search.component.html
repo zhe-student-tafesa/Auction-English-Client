@@ -1,0 +1,39 @@
+<!--响应式表单formGroup，  novalidate：不使用浏览器默认的表单校验-->
+<form [formGroup]="formModule" (ngSubmit)="onSearch()" novalidate>
+<!--                       样式class.has-error，          当title 的 minlength 有错误时-->
+  <div class="form-group" [class.has-error]="formModule.hasError('minlength','title')">
+    <label for="productTitle">Product name：</label>
+    <!--使用 formControlName 指令把这个input与控制器title属性绑定在一起-->
+    <input formControlName="title" type="text" id="productTitle" placeholder="Product name" class="form-control">
+    <!--    价格span显示错误信息, 没有错误时，隐藏-->
+    <span class="help-block" [class.hidden]="!formModule.hasError('minlength','title')" >
+      Please enter at least 3 characters
+    </span>
+  </div>
+
+
+  <div class="form-group"  [class.has-error]="formModule.hasError('positiveNumber','price')">
+    <label for="productPrice">Product price：</label>
+    <!--数组类型number-->
+    <input formControlName="price" type="number" id="productPrice" placeholder="Product price" class="form-control">
+    <!--    价格span显示错误信息, 没有错误时，隐藏-->
+    <span class="help-block" [class.hidden]="!formModule.hasError('positiveNumber','price')" >
+      请输入正数
+    </span>
+  </div>
+
+
+  <div class="form-group">
+    <label for="productCategory">Product Category：</label>
+    <select formControlName="category" id="productCategory" class="form-control">
+      <option value="-1">All Categories</option>
+      <!--      遍历categories，把查询的值绑定给value 属性-->
+      <option *ngFor="let category of categories" [value]="category">{{category}}</option>
+    </select>
+  </div>
+  <div class="form-group">
+<!--    <a [routerLink]="['/']" >-->
+    <button type="submit" class="btn btn-primary btn-block">Search</button>
+<!--    </a>-->
+  </div>
+</form>

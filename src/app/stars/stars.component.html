@@ -1,0 +1,10 @@
+<P>
+        <!--  单击星星事件clickStar，需要把索引传过来，知道点的是哪个星星-->
+  <span *ngFor="let star of stars; let i=index;" class="glyphicon glyphicon-star "
+        [class.glyphicon-star-empty]="star" (click)="clickStar(i)" >
+  <!--    重复5次span，使用ngFor-->
+
+  </span>
+                <!--  增加管道，整数1位，小数位0~2位-->
+  <span> <b>{{rating| number:'1.0-2'}}  Stars</b></span>
+</P>
